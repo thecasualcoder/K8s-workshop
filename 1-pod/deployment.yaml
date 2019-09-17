@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dobby
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dobby
+  template:
+    metadata:
+      labels:
+        app: dobby
+    spec:
+      containers:
+      - name: dobby
+        image: thecasualcoder/dobby:latest
