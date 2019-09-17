@@ -1,23 +1,13 @@
-apiVersion: apps/v1
-kind: Deployment
+---
+apiVersion: v1
+kind: Pod
 metadata:
-  name: dobby-deployment-liveness
+  name: dobby
 spec:
-  replicas: 2
-  strategy:
-    type: RollingUpdate
-  selector:
-    matchLabels:
-      app: dobby-service
-  template:
-    metadata:
-      labels:
-        app: dobby-service
-    spec:
-      containers:
-      - name: dobby
-        image: thecasualcoder/dobby
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 4444
+  containers:
+    - name: dobby
+      image: thecasualcoder/dobby
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: 4444

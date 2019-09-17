@@ -1,23 +1,13 @@
-apiVersion: apps/v1
-kind: Deployment
+---
+apiVersion: v1
+kind: Pod
 metadata:
-  name: dobby-deployment-readiness
+  name: dobby
 spec:
-  replicas: 2
-  strategy:
-    type: RollingUpdate
-  selector:
-    matchLabels:
-      app: dobby-service
-  template:
-    metadata:
-      labels:
-        app: dobby-service
-    spec:
-      containers:
-      - name: dobby
-        image: thecasualcoder/dobby
-        readinessProbe:
-          httpGet:
-            path: /readiness
-            port: 4444
+  containers:
+    - name: dobby
+      image: thecasualcoder/dobby
+      readinessProbe:
+        httpGet:
+          path: /readiness
+          port: 4444
