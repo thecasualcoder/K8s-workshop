@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dobby
+spec:
+  rules:
+  - host: dobby.golabs.io
+    http:
+      paths:
+      - backend:
+          serviceName: dobby
+          servicePort: 80
