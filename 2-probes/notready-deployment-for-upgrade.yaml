@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: dobby
-        image: thecasualcoder/dobby:notready
+        image: thecasualcoder/dobby:not-ready
         livenessProbe:
           httpGet:
             path: /health
