@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dobby-deployment-turbo
+spec:
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: dobby-service
+  template:
+    metadata:
+      labels:
+        app: dobby-service
+    spec:
+      containers:
+      - name: dobby
+        image: thecasualcoder/dobby:turbo
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dobby-deployment-normal
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: dobby-service
+  template:
+    metadata:
+      labels:
+        app: dobby-service
+    spec:
+      containers:
+      - name: dobby
+        image: thecasualcoder/dobby
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 4444
