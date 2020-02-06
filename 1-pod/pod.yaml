@@ -7,4 +7,3 @@ spec:
   containers:
     - name: dobby
       image: thecasualcoder/dobby
-      args: ["dobby", "server"]
